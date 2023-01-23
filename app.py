@@ -23,7 +23,7 @@ def add_csv():
         next(data)
         for row in data:
             product = row[0]
-            price = int(row[1] * 100)
+            price = int(row[1].strip('$')*100)
             quantity = row[2]
             date = datetime.datetime.strptime(row[3], "%B, %d, %Y")
             session.add
