@@ -2,7 +2,6 @@ import csv
 import datetime
 import pandas as pd
 from models import (Base, session, Inventory, engine)
-
 def menu():
     print("STORE INVENTORY")
     print("""\rv) View product inventory
@@ -13,15 +12,15 @@ def menu():
     while choice not in menu:
         choice = input("Enter the letter 'v', 'b', or 'a': ")
     if choice == "v":  # View product inventory
-        pass  
+        pass
     elif choice == "a":  # add product
-        pass  
+        pass
     elif choice == "b":  # backup
-        pass 
-    
+        pass
 def add_csv():
     with open ("inventory.csv") as csvfile:
         data = csv.reader(csvfile)        #reader only?
+        next(data)
         for row in data:
             product = row[0]
             price = int(row[1] * 100)
@@ -77,3 +76,4 @@ if __name__ == "__main__":
 #     # app()
 #     # add_csv()
 #     clean_price(1.25)
+
