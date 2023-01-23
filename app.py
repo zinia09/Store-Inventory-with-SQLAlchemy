@@ -2,6 +2,7 @@ import csv
 import datetime
 import pandas as pd
 from models import (Base, session, Inventory, engine)
+
 def menu():
     print("STORE INVENTORY")
     print("""\rv) View product inventory
@@ -17,6 +18,7 @@ def menu():
         pass  # add_product()
     elif choice == "b":  # backup
         pass  # backup
+    
 def add_csv():
     with open ("inventory.csv") as csvfile:
         data = csv.reader(csvfile)        #reader only?
@@ -24,9 +26,7 @@ def add_csv():
             product = row[0]
             price = int(row[1] * 100)
             quantity = row[2]
-            # date_string = row[3].strip()
-            # date_object = datetime.datetime.strptime(date_string, '%m/%d/%Y')
-            #date = datetime.datetime.strptime(row[3], "%B, %d, %Y")
+            date = datetime.datetime.strptime(row[3], "%B, %d, %Y")
             session.add
         session.commit()
         #print()
