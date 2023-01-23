@@ -13,11 +13,11 @@ def menu():
     while choice not in menu:
         choice = input("Enter the letter 'v', 'b', or 'a': ")
     if choice == "v":  # View product inventory
-        pass  # view_inventory()
+        pass  
     elif choice == "a":  # add product
-        pass  # add_product()
+        pass  
     elif choice == "b":  # backup
-        pass  # backup
+        pass 
     
 def add_csv():
     with open ("inventory.csv") as csvfile:
