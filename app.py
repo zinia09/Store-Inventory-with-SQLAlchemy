@@ -1,7 +1,7 @@
 import csv
 import datetime
-import pandas as pd
 from models import (Base, session, Inventory, engine)
+import models
 def menu():
     print("STORE INVENTORY")
     print("""\rv) View product inventory
@@ -23,34 +23,23 @@ def add_csv():
         next(data)
         for row in data:
             product = row[0]
-            price = int(row[1].strip('$')*100)
-            quantity = row[2]
-            date = datetime.datetime.strptime(row[3], "%B, %d, %Y")
+            price = int(float(row[1].strip('$')) * 100)
+            quantity = int(row[2])
+            date = datetime.datetime.strptime(row[3], "%m/%d/%Y")
             session.add
+            #print(price)
         session.commit()
-        #print()
 
-# def clean_date(data):
-#     dateparse = datetime.datetime.strptime("date" "%B, %d, %Y")
-#     df = pd.read_csv(parse_dates=['datetime'], date_parser=dateparse)
-#     # months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
-#     #           'November', 'December']
-#     # for date in data:
-#     #     split_date = date.split("/")
-#     #     month = split_date[0]   # int(months.index(split_date[0]) + 1)
-#     #     day = split_date[1]        # .split("/"))
-#     #     year = split_date[2]
-#     #     return datetime.date(year, month, day)
+def view_inventory(): #v
+    product_to_view = input("Enter the id of the product you want to view: ")
+    if product_to_view == models.Inventory.product_id:
+        for product in models.session.query(models.Inventory.product_id):
+            print(product)
+    else:
+        print("Not a valid id")
 
-# def clean_price(price_str):
-#
+view_inventory()
 
-# def view_inventory(): #v
-#     product_id = input("Enter the id of the product you want to view: ")
-#     # if product_id not in product_id column:
-#     #     print("Not a valid id")
-#     #     product_id = input("Enter the id of the product you want to view: ")
-#
 # def add_product(): #a
 #     try:
 #         add_product_name = input("Name: ")
@@ -69,11 +58,10 @@ def add_csv():
 #
 #
 
-if __name__ == "__main__":
-    #menu()
-    add_csv()
-    # Base.metadata.create_all(engine)
+# if __name__ == "__main__":
+#     Base.metadata.create_all(engine)
+#     add_csv()
+#     view_inventory()
 #     # app()
 #     # add_csv()
-#     clean_price(1.25)
 
