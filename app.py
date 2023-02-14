@@ -31,8 +31,8 @@ def add_csv():
             quantity = int(row[2])
             date = datetime.datetime.strptime(row[3], "%m/%d/%Y")
             new_inventory = Inventory(product_name=product, product_quantity=quantity, product_price=price, date_updated=date)
-        #     session.add(new_inventory)
-        # session.commit()
+            session.add(new_inventory)
+        session.commit()
 
 
 def view_inventory():
@@ -85,5 +85,6 @@ def backup():
 
 
 if __name__ == "__main__":
+    add_csv()
     Base.metadata.create_all(engine)
     menu()
