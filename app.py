@@ -18,8 +18,8 @@ def menu():
         view_inventory()
     elif choice == "a":
         add_product()
-    elif choice == "b":  # backup
-        pass
+    elif choice == "b":
+        backup()
 
 def add_csv():
     with open("inventory.csv") as csvfile:
@@ -47,9 +47,9 @@ def add_product():   # a
 
         try:
             add_product_name = input("Name: ")
-            add_product_price = int(input("Price: "))
+            add_product_price = int(input("Price (format: 55.55): "))
             add_product_quantity = int(input("Quantity: "))
-            add_date_updated = datetime(input("Date updated: ")) 
+            add_date_updated = datetime.strptime(input("Date updated (format: mm/dd/yyyy): "), "%m/%d/%Y").date()
             add_product = Inventory(product_name=add_product_name,
                                     product_quantity=add_product_quantity,
                                     product_price=add_product_price,
@@ -80,11 +80,11 @@ def backup():
                 "product_name": product.product_name,
                 "product_price": int(float(str(product.product_price).strip('$')) * 100),
                 "product_quantity": product.product_quantity,
-                "date_updated": product.date_updated.strip("%m/%d/%Y")
+                "date_updated": datetime.strptime(product.date_updated.strip("%m/%d/%Y"), "%m/%d/%Y").date()
             })
 
 
 if __name__ == "__main__":
-    add_csv()
     Base.metadata.create_all(engine)
+    add_csv()
     menu()
