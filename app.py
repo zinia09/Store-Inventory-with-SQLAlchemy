@@ -29,7 +29,7 @@ def add_csv():
             product = row[0]
             price = int(float(row[1].strip('$')) * 100)
             quantity = int(row[2])
-            date = datetime.datetime.strptime(row[3], "%m/%d/%Y")
+            date = datetime.datetime.strptime(row[3], "%m/%d/%Y").date()
             new_inventory = Inventory(product_name=product, product_quantity=quantity, product_price=price, date_updated=date)
             session.add(new_inventory)
         session.commit()
