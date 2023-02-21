@@ -14,7 +14,7 @@ class Inventory(Base):
     product_name = Column("Product", String)
     product_quantity = Column("Quantity", Integer)
     product_price = Column("Price", Integer)
-    date_updated = Column("Date updated", Integer)
+    date_updated = Column("Date updated", Date)
 
     def __repr__(self):
         return f"(Id: {self.product_id} Product: {self.product_name} Quantity: {self.product_quantity} Price: {self.product_price} Date updated: {self.date_updated})"
