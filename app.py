@@ -73,12 +73,16 @@ def backup():
         backup_writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         backup_writer.writeheader()
         for product in session.query(Inventory):
-            backup_writer.writerow({
-                "product_name": product.product_name,
-                "product_price": int(float(str(product.product_price).strip('$')) * 100),
-                "product_quantity": product.product_quantity,
-                "date_updated": datetime.strptime(product.date_updated.strip("%m/%d/%Y"), "%m/%d/%Y").date()
-            })
+            if product.date_updated is not None:
+                backup_writer.writerow({
+                    "product_name": product.product_name,
+                    "product_price": int(float(str(product.product_price).strip('$')) * 100),
+                    "product_quantity": product.product_quantity,
+                    "date_updated": product.date_updated.strftime("%m/%d/%Y")
+                })
+            else:
+                " "
+        print("Backup complete!")
 
 
 if __name__ == "__main__":
