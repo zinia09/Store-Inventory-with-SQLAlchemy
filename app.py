@@ -47,19 +47,16 @@ def add_product():   # a
 
         try:
             add_product_name = input("Name: ")
-            add_product_price = int(input("Price (format: 55.55): "))
             add_product_quantity = int(input("Quantity: "))
-            add_date_updated = datetime.strptime(input("Date updated (format: mm/dd/yyyy): "), "%m/%d/%Y").date()
+            add_product_price = int(input("Price (format: 55.55): "))
             add_product = Inventory(product_name=add_product_name,
                                     product_quantity=add_product_quantity,
-                                    product_price=add_product_price,
-                                    date_updated=add_date_updated)
+                                    product_price=add_product_price)
             session.add(add_product)
             session.commit()
             print("Product added!")
-            # print(data)
         except ValueError:
-            input("Please enter date as mm/dd/yyyy and price as 55.55")
+            print("Blimey! you entered the wrong format, rerun to try again")
             return
 
         # obj = session.query(Inventory).filter_by(product_id=28).first()     # to delete a product
