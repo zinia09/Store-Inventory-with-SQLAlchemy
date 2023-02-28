@@ -13,7 +13,7 @@ def menu():
     menu = ['v', 'b', 'a']
     choice = input("Enter the letter 'v', 'b', or 'a': ")
     while choice not in menu:
-        choice = input("Enter the letter 'v', 'b', or 'a': ")
+        choice = input("Invalid option. Please enter 'v', 'b', or 'a' from the menu:  ")
     if choice == "v":
         view_inventory()
     elif choice == "a":
