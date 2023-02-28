@@ -48,7 +48,7 @@ def add_product():   # a
         try:
             add_product_name = input("Name: ")
             add_product_quantity = int(input("Quantity: "))
-            add_product_price = int(input("Price (format: 55.55): "))
+            add_product_price = int(input("Price (Input in cents ex. 555): "))
             add_product = Inventory(product_name=add_product_name,
                                     product_quantity=add_product_quantity,
                                     product_price=add_product_price)
