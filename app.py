@@ -54,7 +54,7 @@ def add_product():   # a
             add_product = Inventory(product_name=add_product_name,
                                     product_quantity=add_product_quantity,
                                     product_price=add_product_price,
-                                    product_date=add_product_date)
+                                    date_updated=add_product_date)
             session.add(add_product)
             session.commit()
             print("Product added!")
