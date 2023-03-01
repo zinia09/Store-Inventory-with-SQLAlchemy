@@ -6,6 +6,7 @@ import models
 from sqlalchemy import delete
 import sqlite3
 
+
 def menu():
     print("STORE INVENTORY")
     print("""\rv) View product inventory
@@ -21,6 +22,7 @@ def menu():
         add_product()
     elif choice == "b":
         backup()
+
 
 def add_csv():
     with open("inventory.csv") as csvfile:
